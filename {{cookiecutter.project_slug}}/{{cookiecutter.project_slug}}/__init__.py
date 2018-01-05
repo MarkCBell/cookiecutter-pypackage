@@ -2,6 +2,9 @@
 
 """Top-level package for {{ cookiecutter.project_name }}."""
 
-__author__ = """{{ cookiecutter.full_name }}"""
-__email__ = '{{ cookiecutter.email }}'
-__version__ = '{{ cookiecutter.version }}'
+import warnings
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
+    import pkg_resources  # Suppress 'UserWarning: Module curver was already imported from ...'
+    __version__ = pkg_resources.require('{{ cookiecutter.project_name }}')[0].version
+
